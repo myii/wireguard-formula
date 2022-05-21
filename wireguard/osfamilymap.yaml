@@ -20,7 +20,10 @@ RedHat:
 
 Suse:
   pkg:
-    name: wireguard-suse
+    name: wireguard-tools
+    dependencies: ['iproute2']
+  service:
+    name: wg-quick
 
 Gentoo:
   pkg:
