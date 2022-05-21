@@ -1,0 +1,47 @@
+# yamllint disable rule:indentation rule:line-length
+# Fedora-34
+---
+values:
+  wireguard:
+    added_in_defaults: defaults_value
+    added_in_lookup: lookup_value
+    added_in_pillar: pillar_value
+    arch: amd64
+    config: /etc/wireguard
+    interfaces:
+      wg0:
+        Interface:
+          ListenPort: 51820
+        Peers:
+          minion_id1:
+            AllowedIPs:
+            - 10.0.45.0/24
+            - 10.0.47.0/24
+            Endpoint: 10.0.34.4:51820
+            PublicKey: FSvVqj2s1FZqsSIvPLrE1RRTgbaPLbfG87P36F21M1g=
+          minion_id2:
+            AllowedIPs: 0.0.0.0/0
+            Endpoint: 10.0.0.1:51820
+            PublicKey: mine:minion_id2:wg0
+    lookup:
+      added_in_lookup: lookup_value
+      winner: lookup
+    pkg:
+      dependencies:
+      - iproute
+      name: wireguard-tools
+    rootgroup: root
+    service:
+      name: wg-quick
+    tofs:
+      files_switch:
+      - any/path/can/be/used/here
+      - id
+      - roles
+      - osfinger
+      - os
+      - os_family
+      source_files:
+        wireguard-config-file-interface-wg0-config:
+        - wireguard.conf.jinja
+    winner: pillar

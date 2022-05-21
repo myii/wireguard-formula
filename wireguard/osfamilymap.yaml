@@ -16,7 +16,9 @@ Debian:
 
 RedHat:
   pkg:
-    name: wireguard-redhat
+    name: wireguard-tools
+  service:
+    name: wg-quick
 
 Suse:
   pkg:

@@ -38,6 +38,11 @@ wireguard-config-file-interface-{{ interface }}-private-key:
     - creates: {{ private_key }}
     - require_in:
       - file: "wireguard-config-file-interface-{{ interface }}-config"
+  file.managed:
+    - name: {{ private_key }}
+    - mode: 600
+    - require:
+      - cmd: wireguard-config-file-interface-{{ interface }}-private-key
 
 wireguard-config-file-interface-{{ interface }}-public-key:
   cmd.run:

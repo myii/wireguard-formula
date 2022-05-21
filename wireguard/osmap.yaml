@@ -19,9 +19,7 @@ Raspbian: {}
 # os_family: RedHat
 Fedora:
   pkg:
-    name: wireguard-fedora
-  service:
-    name: service-fedora
+    dependencies: ['iproute']
 CentOS: {}
 Amazon: {}
 
