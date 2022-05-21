@@ -31,9 +31,9 @@ Gentoo:
 
 Arch:
   pkg:
-    name: wireguard-arch
+    name: wireguard-tools
   service:
-    name: service-arch
+    name: wg-quick
 
 Alpine: {}
 
