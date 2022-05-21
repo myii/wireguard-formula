@@ -11,8 +11,6 @@
 # osfamilymap: {}
 ---
 Debian:
-  pkg:
-    name: wireguard
   service:
     name: wg-quick
 
