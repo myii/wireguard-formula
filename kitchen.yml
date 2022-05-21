@@ -214,15 +214,6 @@ verifier:
 
 suites:
   - name: default
-    excludes:
-      - centos-6-2019-2-py2
-      - amazonlinux-1-2019-2-py2
-      - gentoo-stage3-latest-master-py3
-      - gentoo-stage3-systemd-master-py3
-      - gentoo-stage3-latest-3001-py3
-      - gentoo-stage3-systemd-3001-py3
-      - gentoo-stage3-latest-3000-3-py3
-      - gentoo-stage3-systemd-3000-3-py3
     provisioner:
       dependencies:
         - name: debian
@@ -239,60 +230,8 @@ suites:
           base:
             '*':
               - wireguard
-              - define_roles
       pillars_from_files:
         wireguard.sls: pillar.example
-        define_roles.sls: test/salt/pillar/define_roles.sls
-    verifier:
-      inspec_tests:
-        - path: test/integration/default
-  - name: upstart
-    includes:
-      - centos-6-2019-2-py2
-      - amazonlinux-1-2019-2-py2
-    provisioner:
-      state_top:
-        base:
-          '*':
-            - wireguard._mapdata
-            - wireguard
-      pillars:
-        top.sls:
-          base:
-            '*':
-              - wireguard
-              - define_roles
-      pillars_from_files:
-        wireguard.sls: test/salt/pillar/upstart.sls
-        define_roles.sls: test/salt/pillar/define_roles.sls
-    verifier:
-      inspec_tests:
-        - path: test/integration/default
-  - name: gentoo
-    includes:
-      - gentoo-stage3-latest-master-py3
-      - gentoo-stage3-systemd-master-py3
-      - gentoo-stage3-latest-3001-py3
-      - gentoo-stage3-systemd-3001-py3
-      - gentoo-stage3-latest-3000-3-py3
-      - gentoo-stage3-systemd-3000-3-py3
-    provisioner:
-      state_top:
-        base:
-          '*':
-            - wireguard._mapdata
-            - wireguard
-      pillars:
-        top.sls:
-          base:
-            '*':
-              - wireguard
-              - gentoo
-              - define_roles
-      pillars_from_files:
-        wireguard.sls: pillar.example
-        gentoo.sls: test/salt/pillar/gentoo.sls
-        define_roles.sls: test/salt/pillar/define_roles.sls
     verifier:
       inspec_tests:
         - path: test/integration/default
