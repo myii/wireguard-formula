@@ -17,6 +17,7 @@ Debian:
 RedHat:
   pkg:
     name: wireguard-tools
+    dependencies: ['iproute']
   service:
     name: wg-quick
 

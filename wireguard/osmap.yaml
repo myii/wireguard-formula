@@ -17,9 +17,7 @@ Ubuntu:
 Raspbian: {}
 
 # os_family: RedHat
-Fedora:
-  pkg:
-    dependencies: ['iproute']
+Fedora: {}
 CentOS: {}
 Amazon: {}
 

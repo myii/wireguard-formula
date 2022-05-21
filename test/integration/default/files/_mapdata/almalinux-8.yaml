@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# CentOS Stream-8
+# AlmaLinux-8
 ---
 values:
   wireguard:
