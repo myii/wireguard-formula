@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# Ubuntu-18.04
+# Debian-11
 ---
 values:
   wireguard:
@@ -15,8 +15,8 @@ values:
         Peers:
           minion_id1:
             AllowedIPs:
-            - 10.0.45.0/24
-            - 10.0.47.0/24
+              - 10.0.45.0/24
+              - 10.0.47.0/24
             Endpoint: 10.0.34.4:51820
             PublicKey: FSvVqj2s1FZqsSIvPLrE1RRTgbaPLbfG87P36F21M1g=
           minion_id2:
@@ -43,5 +43,5 @@ values:
       - os_family
       source_files:
         wireguard-config-file-interface-wg0-config:
-        - wireguard.conf.jinja
+          - wireguard.conf.jinja
     winner: pillar

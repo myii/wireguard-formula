@@ -27,6 +27,8 @@ values:
       added_in_lookup: lookup_value
       winner: lookup
     pkg:
+      dependencies:
+      - iproute2
       name: wireguard
     rootgroup: root
     service:
