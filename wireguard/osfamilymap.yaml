@@ -27,7 +27,9 @@ Suse:
 
 Gentoo:
   pkg:
-    name: wireguard-gentoo
+    name: net-vpn/wireguard-tools
+  service:
+    name: wg-quick
 
 Arch:
   pkg:
