@@ -4,6 +4,7 @@
 wireguard:
   pkg:
     name: wireguard
+    dependencies: []
   rootgroup: root
   config: '/etc/wireguard'
   service:

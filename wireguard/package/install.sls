@@ -5,6 +5,8 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 {%- from tplroot ~ "/map.jinja" import wireguard with context %}
 
+{%- set pkgs = wireguard.pkg.dependencies + [wireguard.pkg.name] %}
+
 wireguard-package-install-pkg-installed:
   pkg.installed:
-    - name: {{ wireguard.pkg.name }}
+    - pkgs: {{ pkgs }}
