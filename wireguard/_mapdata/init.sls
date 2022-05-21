@@ -6,9 +6,7 @@
 {%- from tplroot ~ "/map.jinja" import wireguard with context %}
 
 {%- set _mapdata = {
-      "values": {
-        "wireguard": wireguard,
-      }
+      "values": wireguard,
     } %}
 {%- do salt["log.debug"]("### MAP.JINJA DUMP ###\n" ~ _mapdata | yaml(False)) %}
 
