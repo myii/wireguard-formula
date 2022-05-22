@@ -1,5 +1,5 @@
 # yamllint disable rule:indentation rule:line-length
-# Oracle Linux Server-8
+# FreeBSD-12
 ---
 values:
   wireguard:
@@ -7,7 +7,7 @@ values:
     added_in_lookup: lookup_value
     added_in_pillar: pillar_value
     arch: amd64
-    config: /etc/wireguard
+    config: /usr/local/etc/wireguard
     interfaces:
       wg0:
         Interface:
@@ -27,12 +27,11 @@ values:
       added_in_lookup: lookup_value
       winner: lookup
     pkg:
-      dependencies:
-      - iproute
-      name: wireguard-tools
-    rootgroup: root
+      dependencies: []
+      name: wireguard
+    rootgroup: wheel
     service:
-      name: wg-quick
+      name: wireguard
     tofs:
       files_switch:
       - any/path/can/be/used/here

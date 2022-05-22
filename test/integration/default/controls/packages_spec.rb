@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
-# Prepare platform "finger"
-platform_finger = system.platform[:finger].split('.').first.to_s
+# Override by platform family
+package_name =
+  case system.platform[:family]
+  when 'redhat', 'fedora', 'suse', 'arch'
+    'wireguard-tools'
+  when 'gentoo'
+    'net-vpn/wireguard-tools'
+  else
+    'wireguard'
+  end
 
 control 'wireguard package' do
   title 'should be installed'
-
-  # Overide by `platform_finger`
-  package_name =
-    case platform_finger
-    when 'centos-6', 'amazonlinux-1'
-      'cronie'
-    else
-      'bash'
-    end
 
   describe package(package_name) do
     it { should be_installed }

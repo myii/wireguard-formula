@@ -1,26 +1,35 @@
 # frozen_string_literal: true
 
+# Override by platform family
+root_group, path_prefix =
+  case platform[:family]
+  when 'bsd'
+    %w[wheel /usr/local/]
+  else
+    %w[root /]
+  end
+
 control 'wireguard configuration' do
   title 'should match desired lines'
 
-  describe file('/etc/wireguard/wg0.priv') do
+  describe file("#{path_prefix}etc/wireguard/wg0.priv") do
     it { should be_file }
     it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into root_group }
     its('mode') { should cmp '0600' }
   end
 
-  describe file('/etc/wireguard/wg0.pub') do
+  describe file("#{path_prefix}etc/wireguard/wg0.pub") do
     it { should be_file }
     it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into root_group }
     its('mode') { should cmp '0644' }
   end
 
-  describe file('/etc/wireguard/wg0.conf') do
+  describe file("#{path_prefix}etc/wireguard/wg0.conf") do
     it { should be_file }
     it { should be_owned_by 'root' }
-    it { should be_grouped_into 'root' }
+    it { should be_grouped_into root_group }
     its('mode') { should cmp '0600' }
     its('content') do
       should eq(
@@ -32,7 +41,7 @@ control 'wireguard configuration' do
 
           [Interface]
           ListenPort = 51820
-          PostUp = wg set %i private-key /etc/wireguard/wg0.priv && (true)
+          PostUp = wg set %i private-key #{path_prefix}etc/wireguard/wg0.priv && (true)
 
           [Peer]
           # minion_id1
