@@ -20,6 +20,12 @@ wireguard-service-running-service-running-{{ interface }}:
     - watch:
       - sls: {{ sls_config_file }}
       - file: wireguard-config-file-interface-{{ interface }}-config
+  cmd.run:
+    - names:
+      - journalctl -xeu {{ wireguard.service.name }}@{{ interface }}
+      - systemctl status {{ wireguard.service.name }}@{{ interface }}
+    - onfail:
+      - service: wireguard-service-running-service-running-{{ interface }}
 {%-   endfor %}
 {%- endif %}
 
