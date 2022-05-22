@@ -30,13 +30,20 @@ wireguard-service-running-sysrc-managed:
     - name: wireguard_interfaces
     - value: "{{ interfaces|join(' ') }}"
 
+# wireguard-service-running-service-enabled:
+#   service.enabled:
+#     - name: {{ wireguard.service.name }}
+
 wireguard-service-running-service-running:
   service.running:
     - name: {{ wireguard.service.name }}
-    - sig: wireguard-go
     - enable: True
+    # - sig: wireguard-go
+    # - sig: wg-quick
+    # - sig: wg0
     - watch:
       - sysrc: wireguard-service-running-sysrc-managed
+      # - service: wireguard-service-running-service-enabled
       - sls: {{ sls_config_file }}
 {%-   for interface in interfaces %}
       - file: wireguard-config-file-interface-{{ interface }}-config
